@@ -29,5 +29,6 @@ services:
       --model ${MODEL_NAME}
       --tensor-parallel-size ${TP_SIZE}
       --kv-cache-dtype ${KV_CACHE_DTYPE}
-      ${QUANT_METHOD}
+      --max-model-len ${MAX_MODEL_LEN}
+      ${QUANT_ARG}
       ${EXTRA_ARGS}"
