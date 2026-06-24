@@ -1,8 +1,10 @@
 services:
   vllm:
+    # image: ${VLLM_IMAGE}
     build:
       context: ${VLLM_BUILD_CONTEXT}
       dockerfile: ${VLLM_DOCKERFILE}
+      shm_size: ${SHM_SIZE}
       args:
         BUILDKIT_CONTEXT_KEEP_GIT_DIR: "1"
     container_name: ${CONTAINER_NAME}
