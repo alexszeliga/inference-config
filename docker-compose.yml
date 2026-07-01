@@ -23,7 +23,9 @@ services:
       - ZE_AFFINITY_MASK=${ZE_AFFINITY_MASK}
       - HF_TOKEN=${HF_TOKEN}
       - HF_HOME=${HF_HOME}
-
+      - SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS=${SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS}
+      - VLLM_XPU_ENABLE_XPU_GRAPH=${VLLM_XPU_ENABLE_XPU_GRAPH}
+      - VLLM_XPU_USE_SAMPLER_KERNEL=${VLLM_XPU_USE_SAMPLER_KERNEL}
     entrypoint: /bin/bash
     command: >
       -c "source /opt/intel/oneapi/setvars.sh --force &&
@@ -33,4 +35,5 @@ services:
       --kv-cache-dtype ${KV_CACHE_DTYPE}
       --max-model-len ${MAX_MODEL_LEN}
       ${QUANT_ARG}
+      --speculative-config '{\"method\":\"mtp\",\"num_speculative_tokens\":2}'
       ${EXTRA_ARGS}"
